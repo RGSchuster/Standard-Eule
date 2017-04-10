@@ -24,36 +24,33 @@ grid = [
 #my plan is to check all horizontal, vertical, and diagonal products
 #starting at (0,0) and going to (16,16)
 #I just need to check to the right, down, and down-right to find all possible
-
-#horizontal
-for i in range(0,len(grid)-1):
-    for j in range(0,len(grid)-(productNum-1)):
-        maxH = 1
-        for k in range(0,productNum):
+#I made this possible for any nxn grid with any set-able product count
+productNum = 4
+top = 0
+#horizontal and vertical
+for i in range(len(grid)):
+    for j in range(len(grid)-(productNum-1)):
+        maxH,maxV = 1,1
+        for k in range(productNum):
             maxH = maxH*grid[i][k+j]
+            maxV = maxV*grid[j+k][i]
             if maxH>top:
                 top = maxH
-#vertical
-for i in range(0,len(grid)-(productNum-1)):
-    for j in range(0,len(grid)-1):
-        maxV = 1
-        for k in range(0,productNum):
-            maxV = maxV*grid[i+k][j]
             if maxV>top:
                 top = maxV
 #diagonal down right
-for i in range(0,len(grid)-(productNum-1)):
-    for j in range(0,len(grid)-(productNum-1)):
+for i in range(len(grid)-(productNum-1)):
+    for j in range(len(grid)-(productNum-1)):
         maxDr = 1
-        for k in range(0,productNum):
+        for k in range(productNum):
             maxDr = maxDr*grid[i+k][j+k]
             if maxDr>top:
                 top = maxDr
 #diagonal down left
-for i in range(0,len(grid)-(productNum-1)):
-    for j in range(3,len(grid)-1):
+for i in range(len(grid)-(productNum-1)):
+    for j in range(3,len(grid)):
         maxDl = 1
-        for k in range(0,productNum):
+        for k in range(productNum):
             maxDl = maxDl*grid[i+k][j-k]
             if maxDl>top:
                 top = maxDl
