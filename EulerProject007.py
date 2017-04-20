@@ -6,6 +6,6 @@ for i in range(3,10000000):
             break
         if j==len(pList)-1:
             pList.append(i)
-    if (len(pList)==10000):
+    if (len(pList)==10001):
         break
 print(max(pList))
